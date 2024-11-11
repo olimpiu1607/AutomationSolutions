@@ -67,7 +67,6 @@ public class LoginPage extends BasePage {
             resetButton.click();
         }
 
-
         @FindBy(linkText = "dino")
         private WebElement userLoggedIn;
 
@@ -77,7 +76,7 @@ public class LoginPage extends BasePage {
 
 
 
-//      Acest test se face cand avem un sort bar in pagina
+
         @FindBy(css = ".sort-products-select.form-control.form-control-sm")
         private WebElement sortBar;
 
@@ -89,9 +88,6 @@ public class LoginPage extends BasePage {
             Select optionSelect = new Select(element);
             optionSelect.selectByVisibleText(optiom);
         }
-//        Pana aici
-
-
 
 
         public void loginUser(){
@@ -100,6 +96,7 @@ public class LoginPage extends BasePage {
             setPassword("choochoo");
             clickLoginButton();
         }
+        
 
 
         @FindBy (css = ".card-link")
@@ -110,6 +107,80 @@ public class LoginPage extends BasePage {
         }
 
 
+
+        @FindBy (css = ".btn.btn-link")
+    private  WebElement logOutButton;
+
+        public WebElement clicklogOutButton(){
+            logOutButton.click();
+            return logOutButton;
+        }
+
+        @FindBy(css = ".error")
+    private WebElement error;
+
+        public WebElement getError(){
+            return error;
+        }
+
+        @FindBy(linkText = "Awesome Granite Chips")
+    private WebElement awesomeGraniteChips;
+
+        public WebElement clickAwesomeGraniteChips(){
+            return awesomeGraniteChips;
+        }
+
+        @FindBy(css = ".svg-inline--fa.fa-shopping-bag.fa-w-14.fa-3x.brand-logo")
+    private WebElement homepageButton;
+
+        public WebElement clickhomePageButton(){
+         return  homepageButton;
+        }
+
+        @FindBy(xpath = "//span[text()='Hello guest! ']")
+    private WebElement helloGuest;
+
+        public WebElement gethelloguest(){
+            return helloGuest;
+        }
+
+        @FindBy(css = ".text-muted")
+    private WebElement products;
+
+        public WebElement getProducts(){
+            return products;
+        }
+
+        @FindBy(css = ".svg-inline--fa.fa-shopping-cart.fa-w-18")
+    private WebElement shoppingCart;
+
+        public WebElement clickShoppingCart(){
+            shoppingCart.click();
+            return shoppingCart;
+        }
+
+        @FindBy(css = ".text-center.container")
+    private WebElement emptyCart;
+
+        public WebElement getEmptyCart(){
+            return emptyCart;
+        }
+
+
+        @FindBy(css = ".svg-inline--fa.fa-question.fa-w-12")
+    private WebElement helpButton;
+
+        public WebElement clickHelpButton(){
+            helpButton.click();
+            return helpButton;
+        }
+
+        @FindBy(css = ".modal-content")
+    private WebElement afterHelpButton;
+
+        public WebElement getAfterHelpButton(){
+            return helpButton;
+        }
 
 }
 

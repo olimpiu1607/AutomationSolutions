@@ -72,42 +72,49 @@ public class CheckoutPage extends BasePage {
     public void clickcartIcon() {
         cartIcon.click();
     }
-    @FindBy (css = ".svg-inline--fa.fa-shopping-cart.fa-w-18")
+
+    @FindBy(css = ".svg-inline--fa.fa-shopping-cart.fa-w-18")
     private WebElement shoppingCartIcon;
 
     public void clickshoppingCartIcon() {
         shoppingCartIcon.click();
     }
-    @FindBy (css =".btn.btn-success")
+
+    @FindBy(css = ".btn.btn-success")
     private WebElement checkoutCart;
 
     public void clickcheckoutCart() {
         checkoutCart.click();
     }
+
     @FindBy(id = "first-name")
     private WebElement firstNameField;
 
     public void setFirstNameField() {
         firstNameField.sendKeys("Olimpiu");
     }
+
     @FindBy(id = "last-name")
     private WebElement lastNameField;
 
     public void setLastNameField() {
         lastNameField.sendKeys("Pop");
     }
+
     @FindBy(id = "address")
     private WebElement addressField;
 
     public void setAddressField() {
         addressField.sendKeys("castanului");
     }
-    @FindBy (css = ".btn.btn-success")
+
+    @FindBy(css = ".btn.btn-success")
     private WebElement continueCheckoutButton;
 
     public void clickcountinueCheckoutButton() {
         continueCheckoutButton.click();
     }
+
     @FindBy(css = ".btn.btn-success")
     private WebElement completeOrderButton;
 
@@ -123,14 +130,6 @@ public class CheckoutPage extends BasePage {
     }
 
 
-
-
-
-
-
-
-
-
     @FindBy(linkText = "Awesome Metal Chair")
     private WebElement awesomemetalchair;
 
@@ -141,23 +140,17 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = ".svg-inline--fa.fa-cart-plus.fa-w-18.fa-3x ")
     private WebElement addToCart;
 
-    public void clickaddToCartButton(){
+    public void clickaddToCartButton() {
         addToCart.click();
     }
 
     @FindBy(css = ".svg-inline--fa.fa-shopping-cart.fa-w-18 ")
     private WebElement pressCartButton;
 
-    public void clickpressCartButton(){
+    public void clickpressCartButton() {
         pressCartButton.click();
     }
 
-    @FindBy(css = ".svg-inline--fa.fa-trash.fa-w-14 ")
-    private WebElement removeProduct;
-
-    public void clickremoveProduct(){
-        removeProduct.click();
-    }
 
     @FindBy(css = ".text-center.container")
     private WebElement addSomeProducts;
@@ -167,103 +160,154 @@ public class CheckoutPage extends BasePage {
     }
 
 
-
-
-
-
-
-
     @FindBy(linkText = "Awesome Soft Shirt")
     private WebElement AwesomeSoftShirt;
 
-    public void clickAwesomeSoftShirt(){
+    public void clickAwesomeSoftShirt() {
         AwesomeSoftShirt.click();
     }
 
     @FindBy(css = ".svg-inline--fa.fa-cart-plus.fa-w-18.fa-3x ")
     private WebElement Add2Cart;
 
-    public void clickAdd2Cart(){
+    public void clickAdd2Cart() {
         Add2Cart.click();
     }
 
     @FindBy(css = ".svg-inline--fa.fa-shopping-cart.fa-w-18 ")
     private WebElement clickcartBtn;
 
-    public void clickcartBtn(){
+    public void clickcartBtn() {
         clickcartBtn.click();
     }
 
     @FindBy(css = ".svg-inline--fa.fa-plus-circle.fa-w-16 ")
     private WebElement clickplusOne;
 
-    public void clickplusOne(){
+    public void clickplusOne() {
         clickplusOne.click();
     }
 
     @FindBy(css = ".amount-total")
     private WebElement ValidationTotal;
 
-    public WebElement getValidationTotal(){
+    public WebElement getValidationTotal() {
         return ValidationTotal;
     }
 
 
-
-
-
-//      Cautarea xPath se face din inspect element iar jos se apasa Ctrl+F
-//      Aceasta formula scoate semnul de dolar din pret, si ne returneaza pretul fara dolar.
     @FindBy(xpath = "(//td[@class='amount'])[1]")
     private WebElement itemPrice;
 
-    public double productPrice(){
+    public double productPrice() {
         String amountValue = itemPrice.getText();
         String cleanAmountValue = amountValue.replace("$", "");
         return Double.parseDouble(cleanAmountValue);
     }
 
 
-
     @FindBy(xpath = "(//td[@class='amount'])[2]")
     private WebElement taxPrice;
 
-    public double taxPrice(){
+    public double taxPrice() {
         String taxValue = taxPrice.getText();
         String cleanTaxValue = taxValue.replace("$", "");
         return Double.parseDouble(cleanTaxValue);
     }
 
 
-
-
     @FindBy(xpath = "(//td[@class='amount'])[3]")
     private WebElement totalPrice;
 
-    public double totalPrice(){
+    public double totalPrice() {
         String totalValue = totalPrice.getText();
-       String cleantotalValue = totalValue.replace("$","");
-       return Double.parseDouble(cleantotalValue);
+        String cleantotalValue = totalValue.replace("$", "");
+        return Double.parseDouble(cleantotalValue);
     }
 
 
-
-
-
-//      Acest public void face legatura cu produsele mentionate in checkouttest.
-    public void addProductToCart(){
+    public void addProductToCart() {
         clickAwesomeSoftShirt();
         clickAdd2Cart();
         clickcartBtn();
-    } //
+    }
 
 
+    @FindBy(linkText = "Licensed Steel Gloves")
+    private WebElement LicensedSteelGloves;
+
+    public void clickLicensedSteelGloves() {
+        LicensedSteelGloves.click();
+    }
+
+    @FindBy(css = ".svg-inline--fa.fa-heart.fa-w-16.fa-3x")
+    private WebElement AddtoWishlist;
+
+    public void clickAddtoWishList() {
+        AddtoWishlist.click();
+    }
+
+    @FindBy(css = ".svg-inline--fa.fa-shopping-bag.fa-w-14.fa-3x.brand-logo")
+    private WebElement backToProductsList;
+
+    public void clickbackToProductsList() {
+        backToProductsList.click();
+    }
+
+    @FindBy(linkText = "Practical Metal Mouse")
+    private WebElement practicalMetalMouse;
+
+    public void clickpracticalMetalMouse() {
+        practicalMetalMouse.click();
+    }
+
+    @FindBy(css = ".svg-inline--fa.fa-heart.fa-w-16.fa-3x")
+    private WebElement AddtoWishList2;
+
+    public void clickAddtoWishList2() {
+        AddtoWishList2.click();
+    }
+
+    @FindBy(css = ".svg-inline--fa.fa-heart.fa-w-16")
+    private WebElement WishListBtn;
+
+    public void clickWishListBtn() {
+        WishListBtn.click();
+    }
 
 
+    @FindBy(css = ".btn.btn-link")
+    private WebElement brokenHeartIcon;
+
+    public void clickBrokenHeartIcon() {
+        brokenHeartIcon.click();
+    }
 
 
+    @FindBy(css = ".svg-inline--fa.fa-undo.fa-w-16")
+    private WebElement resetWishlistButton;
+
+    public void clickresetWishlistButton() {
+        resetWishlistButton.click();
+    }
 
 
+    @FindBy(css = ".text-muted")
+    private WebElement wishlist;
 
+    public WebElement getWishlist() {
+        return wishlist;
+    }
+
+
+    @FindBy(css = ".col-md-auto")
+    private WebElement cartProduct;
+
+    public WebElement getCartProduct(){
+        return cartProduct;
+    }
 
 }
+
+
+

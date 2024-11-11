@@ -53,30 +53,27 @@ public class LoginTest extends Hooks {
 
 
 
-//    @Test(description = "Login test")
-//    public void loginTest(){
-//        loginPage.clickLoginIcon();
-//        loginPage.setUsername("dino");
-//        loginPage.setPassword("choochoo");
-//        loginPage.clickLoginButton();
-//        assertEquals(loginPage.getuserLoggedIn().getText(), "userLoggedIn");
-//    }
+    @Test(description = "Login test")
+    public void loginTest(){
+        loginPage.clickLoginIcon();
+        loginPage.setUsername("dino");
+        loginPage.setPassword("choochoo");
+        loginPage.clickLoginButton();
+        assertEquals(loginPage.getuserLoggedIn().getText(), "userLoggedIn");
+    }
 
 
     @Test (description = "Login Test")
-    public void loginTest() throws InterruptedException{
+    public void loginWay()throws InterruptedException{
         loginPage.loginUser();
         Thread.sleep(2000);
         wait.until(ExpectedConditions.visibilityOf(loginPage.getuserLoggedIn()));
         Thread.sleep(2000);
         loginPage.clickResetButton();
-        Thread.sleep(2000);
+        Thread.sleep(5600);
     }
 
 
-
-
-    //    Acest test se face cand avem un sortbar in pagina.
     @Test(description = "Sorting Test")
     public void sortTest() {
         loginPage.selectOption(loginPage.getSortBar(), "Sort by name (Z to A)");
@@ -92,10 +89,112 @@ public class LoginTest extends Hooks {
 
 
         Assert.assertEquals(actualProductNames, expectedProductNames, "The products are not sorted in reverse alphabetical order");
-        //    Pana aici
-
-
     }
+
+
+    @Test(description = "Sorting Test")
+    public void sortTest1() {
+        loginPage.selectOption(loginPage.getSortBar(), "Sort by name (A to Z)");
+        List<WebElement> productElements = loginPage.getProductElements();
+        List<String> actualProductNames = new ArrayList<>();
+
+        for (WebElement productElement : productElements){
+            actualProductNames.add(productElement.getText());
+        }
+
+        List<String> expectedProductNames = new ArrayList<>(actualProductNames);
+        expectedProductNames.sort(Comparator.reverseOrder());
+    }
+
+
+    @Test(description = "Sorting Test")
+    public void sortTest2() {
+        loginPage.selectOption(loginPage.getSortBar(), "Sort by price (low to high)");
+        List<WebElement> productElements = loginPage.getProductElements();
+        List<String> actualProductPrice = new ArrayList<>();
+
+        for (WebElement productElement : productElements){
+            actualProductPrice.add(productElement.getText());
+        }
+
+        List<String> expectedProductPrice = new ArrayList<>(actualProductPrice);
+        expectedProductPrice.sort(Comparator.reverseOrder());
+    }
+
+
+    @Test(description = "Sorting Test")
+    public void sortTest3() {
+        loginPage.selectOption(loginPage.getSortBar(), "Sort by price (high to low)");
+        List<WebElement> productElements = loginPage.getProductElements();
+        List<String> actualProductNames = new ArrayList<>();
+
+        for (WebElement productElement : productElements){
+            actualProductNames.add(productElement.getText());
+        }
+
+        List<String> expectedProductNames = new ArrayList<>(actualProductNames);
+        expectedProductNames.sort(Comparator.reverseOrder());
+    }
+
+
+    @Test(description = "Log out user")
+    public void loggingOut()throws InterruptedException{
+        loginPage.loginUser();
+        loginPage.clicklogOutButton();
+        assertEquals(loginPage.gethelloguest().getText(), "Hello guest!");
+    }
+
+
+    @Test(description = "Incorrect username test")
+    public void incorrectUsername(){
+        loginPage.clickLoginIcon();
+        loginPage.setUsername("dinoh");
+        loginPage.setPassword("choochoo");
+        loginPage.clickLoginButton();
+        assertEquals(loginPage.getError().getText(),"Incorrect username or password!");
+        ExtentTestNGITestListener.getTest().log(Status.PASS,"The user is not able to login due to message displayed.");
+    }
+
+    @Test(description = "Incorrect password test")
+    public void incorrectPassword(){
+        loginPage.clickLoginIcon();
+        loginPage.setUsername("dino");
+        loginPage.setPassword("chiuchiu");
+        loginPage.clickLoginButton();
+        assertEquals(loginPage.getError().getText(),"Incorrect username or password!");
+        ExtentTestNGITestListener.getTest().log(Status.PASS,"The user is not able to login due to message displayed.");
+    }
+
+
+    @Test(description = "Click homepage from a product page")
+    public void clickHomePageFromProduct(){
+        loginPage.clickAwesomeGraniteChips();
+        ExtentTestNGITestListener.getTest().log(Status.INFO,"The product is displayed.");
+        loginPage.clickhomePageButton();
+        assertEquals(loginPage.getProducts().getText(),"Products");
+    }
+
+    @Test(description = "Entering on empty cart")
+    public void emptyCart(){
+        loginPage.clickShoppingCart();
+        assertEquals(loginPage.getEmptyCart().getText(), "How about adding some products in your cart?");
+    }
+
+    @Test(description = "Click help button")
+    public void helpButton(){
+        loginPage.clickHelpButton();
+        assertEquals(loginPage.getAfterHelpButton().getText(), "");
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
