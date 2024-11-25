@@ -144,6 +144,13 @@ public class LoginPage extends BasePage {
             return helloGuest;
         }
 
+        @FindBy(xpath = "//span[text()='Hi ']")
+        private WebElement HiDino;
+
+        public WebElement getHiDino(){
+            return HiDino;
+        }
+
         @FindBy(css = ".text-muted")
     private WebElement products;
 
@@ -181,6 +188,9 @@ public class LoginPage extends BasePage {
         public WebElement getAfterHelpButton(){
             return helpButton;
         }
+
+
+
 
 }
 

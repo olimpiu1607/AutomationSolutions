@@ -1,7 +1,11 @@
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -9,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
@@ -33,6 +38,7 @@ public class CheckoutTest extends Hooks {
 
     public SoftAssert softAssert;
 
+
     // Method annotated with @BeforeMethod, indicating that it will run before each test method.
     // This method is used to set up the page objects and other necessary components before each test.
     @BeforeMethod
@@ -48,6 +54,8 @@ public class CheckoutTest extends Hooks {
         wait = new WebDriverWait(driver, 30);
         softAssert = new SoftAssert();
     }
+
+
 
 
     @Test(description = "Tests the search functionality by searching for the keyword 'Awesome'")
@@ -82,8 +90,6 @@ public class CheckoutTest extends Hooks {
     }
 
 
-
-
     @Test(description = "Purchasing a simple product from a guest user")
     public void checkoutTest(){
 checkoutPage.clickawesomechipslink();
@@ -106,6 +112,7 @@ assertEquals(checkoutPage.getSuccessMessage().getText(), "Order complete");
         checkoutPage.clickpressCartButton();
         assertEquals(checkoutPage.getCartProduct().getText(),"1");
     }
+
 
 
     @Test(description = "Increase the amount of a product")
@@ -138,11 +145,37 @@ assertEquals(checkoutPage.getSuccessMessage().getText(), "Order complete");
         checkoutPage.clickBrokenHeartIcon();
     }
 
+    @Test(description = "Add product from wishlist to cart")
+    public void wishlistToCart(){
+        checkoutPage.clickLicensedSteelGloves();
+        checkoutPage.clickAddtoWishList();
+        checkoutPage.clickWishListBtn();
+        assertEquals(checkoutPage.getWishlist().getText(), "Wishlist");
+        checkoutPage.clickcartFromWishList();
+        checkoutPage.clickcartBtn();
+        wait.until(ExpectedConditions.visibilityOf(checkoutPage.getcartProduct1()));
+    }
+
 
     @Test(description = "Reset Wishlist")
     public void resetWishlist() {
         checkoutPage.clickresetWishlistButton();
     }
+
+    @Test(description = "Negative search test")
+    public void negativeSearch(){
+        checkoutPage.setSearchBar("Awesome");
+        checkoutPage.clickSearchButton();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The search engine is looking up for the keyword 'Awesome'");
+        try {
+            if (checkoutPage.getMiscProduct().isDisplayed()) {
+                Assert.fail("Element is still present");
+            }
+        } catch (NoSuchElementException e) {
+            Assert.assertTrue(true, "Element 'Awesome' is not found");
+        }
+    }
+
 
 
 }

@@ -59,7 +59,7 @@ public class LoginTest extends Hooks {
         loginPage.setUsername("dino");
         loginPage.setPassword("choochoo");
         loginPage.clickLoginButton();
-        assertEquals(loginPage.getuserLoggedIn().getText(), "userLoggedIn");
+        assertEquals(loginPage.getHiDino().getText(), "Hi dino!");
     }
 
 
@@ -185,14 +185,6 @@ public class LoginTest extends Hooks {
         loginPage.clickHelpButton();
         assertEquals(loginPage.getAfterHelpButton().getText(), "");
     }
-
-
-
-
-
-
-
-
 
 
 

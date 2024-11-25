@@ -206,6 +206,7 @@ public class CheckoutPage extends BasePage {
     }
 
 
+
     @FindBy(xpath = "(//td[@class='amount'])[2]")
     private WebElement taxPrice;
 
@@ -303,11 +304,38 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = ".col-md-auto")
     private WebElement cartProduct;
 
-    public WebElement getCartProduct(){
+    public WebElement getCartProduct() {
         return cartProduct;
     }
 
+
+    @FindBy(css = ".card-link")
+    private WebElement miscProduct;
+
+    public WebElement getMiscProduct() {
+        return miscProduct;
+
+    }
+
+
+    @FindBy (css = ".svg-inline--fa.fa-cart-plus.fa-w-18.fa-2x")
+    private WebElement cartFromWishList;
+
+    public void clickcartFromWishList(){
+        cartFromWishList.click();
+    }
+
+    @FindBy (id = "item_8_title_link")
+    private WebElement cartProduct1;
+
+    public WebElement getcartProduct1(){
+        return cartProduct1;
+    }
+
+
+
 }
+
 
 
 
